@@ -1,22 +1,21 @@
-// dashboard.dart
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../layouts/auth.dart';
+import 'package:go_router/go_router.dart';
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<Login> createState() => _LoginState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Global widget overlay
       body: Stack(
         children: [
-          // Global widget overlay
           const AuthGlobalWidget(),
           // Main content
           Padding(
@@ -25,17 +24,15 @@ class _DashboardState extends State<Dashboard> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  "BLOOM",
+                  "Login to BLOOM",
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    context.go('/login');
-                    // Add your logic here for the button press
-                    // You can navigate to another screen, perform an action, etc.
+                    context.go('/');
                   },
-                  child: const Text('Login'),
+                  child: const Text('Back to home'),
                 ),
               ],
             ),
