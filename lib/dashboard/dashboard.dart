@@ -1,15 +1,16 @@
+// dashboard.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import '../layouts/auth.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({super.key});
+  const Dashboard({Key? key}) : super(key: key);
 
   @override
   State<Dashboard> createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
-  final String assetName = 'assets/images/logo.svg';
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
