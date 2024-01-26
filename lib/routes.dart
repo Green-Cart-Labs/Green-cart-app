@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'dashboard/dashboard.dart';
 import 'login/login.dart';
+import 'layouts/auth.dart';
+import 'package:green_cart/layouts/auth.dart';
 
 // GoRouter configuration
 final GoRouter router = GoRouter(
@@ -9,7 +11,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       name: 'dashboard',
       path: '/',
-      builder: (context, state) => const Dashboard(),
+      builder: (context, state) => (const AuthGlobalWidget(child: Dashboard())),
     ),
     GoRoute(
       name: 'login',

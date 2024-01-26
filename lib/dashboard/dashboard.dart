@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../layouts/auth.dart';
+import 'package:flutter_svg/svg.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -13,6 +14,8 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
+    const assetName = 'assets/images/logo.svg';
+
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
@@ -44,6 +47,7 @@ class _DashboardState extends State<Dashboard> {
             style: TextStyle(
               fontWeight: FontWeight.w900,
               fontSize: 28,
+              // color: Colors.deepPurple,
             ),
           ),
           const SizedBox(
@@ -86,43 +90,43 @@ class _DashboardState extends State<Dashboard> {
               ),
             ],
           ),
-          const SizedBox(height: 15,),
-          GridView.builder(
-            itemCount: 4,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-            ),
-            physics: ScrollPhysics(),
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            itemBuilder: (context, index){
-              return Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  children: [
-                    SvgPicture.asset(assetName),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      child: Column(
-                        children: [
-                          Text("dataName"),
-                          Text("dataName"),
-
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              );
-            }
+          const SizedBox(
+            height: 15,
           ),
+          GridView.builder(
+              itemCount: 4,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+              ),
+              physics: ScrollPhysics(),
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    children: [
+                      SvgPicture.asset(assetName),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        child: const Column(
+                          children: [
+                            Text("dataName"),
+                            Text("dataName"),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }),
         ],
       ),
     );
