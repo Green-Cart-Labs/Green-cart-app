@@ -62,7 +62,10 @@ class _MyHomePageState extends State<MyHomePage> {
             end: Alignment.bottomRight,
           ),
         ),
-        child: const Dashboard(),
+        child: const Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Dashboard(),
+        ),
       ),
     );
   }
