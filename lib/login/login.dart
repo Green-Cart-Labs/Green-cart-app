@@ -16,7 +16,7 @@ class _LoginState extends State<Login> {
       // Global widget overlay
       body: Stack(
         children: [
-          const AuthGlobalWidget(),
+          // const AuthGlobalWidget(),
           // Main content
           Padding(
             padding: const EdgeInsets.all(15.0),
