@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         child: const Padding(
-          padding: EdgeInsets.all(15.0),
+          padding: EdgeInsets.all(20.0),
           child: Dashboard(),
         ),
       ),
