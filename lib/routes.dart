@@ -6,7 +6,7 @@ import 'package:green_cart/layouts/auth.dart';
 
 // GoRouter configuration
 final GoRouter router = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/login',
   routes: [
     GoRoute(
       name: 'dashboard',
