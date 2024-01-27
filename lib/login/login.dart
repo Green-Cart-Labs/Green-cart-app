@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,34 +11,15 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  // late Future<FirebaseApp> _firebaseInitialization;
-
   @override
   void initState() {
     super.initState();
-    // _firebaseInitialization = _initializeFirebase();
   }
-
-  // Future<FirebaseApp> _initializeFirebase() async {
-  //   FirebaseApp firebaseApp = await Firebase.initializeApp(
-  //     name: 'Bloom',
-  //     options: const FirebaseOptions(
-  //       // TODO: improve code quality
-  //       apiKey: 'AIzaSyAXJxGwdgBHW92uZtbER8MFjxAR5t6Ehl0',
-  //       appId: '1:529019554109:android:e30d4efa057826cf725d54',
-  //       messagingSenderId: '529019554109',
-  //       projectId: 'book-my-ground-331b5',
-  //       storageBucket: 'book-my-ground-331b5.appspot.com',
-  //     ),
-  //   );
-  //   return firebaseApp;
-  // }
 
   Future<dynamic> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      print("googleUser.toString()");
-      print(googleUser.toString());
+
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;
 
@@ -47,11 +27,10 @@ class _LoginState extends State<Login> {
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-      print('credential->$credential');
       return await FirebaseAuth.instance.signInWithCredential(credential);
     } on Exception catch (e) {
-      // TODO
-      print('exception->$e');
+      debugPrint(e.toString());
+      return null;
     }
   }
 
@@ -86,11 +65,6 @@ class _LoginState extends State<Login> {
                       ),
                       onPressed: () async {
                         userCredential.value = await signInWithGoogle();
-                        print(userCredential);
-                        print("90");
-                        // if (userCredential.value != null)
-                        //   print(userCredential.value.user!.email);
-                        // print("object");
                       },
                     ),
                   ),

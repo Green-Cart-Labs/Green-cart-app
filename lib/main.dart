@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:green_cart/theme.dart';
 import 'package:green_cart/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
