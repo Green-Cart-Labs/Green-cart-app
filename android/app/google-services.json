@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "529019554109",
+    "project_id": "book-my-ground-331b5",
+    "storage_bucket": "book-my-ground-331b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529019554109:android:e30d4efa057826cf725d54",
+        "android_client_info": {
+          "package_name": "com.example.green_cart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529019554109-nu9ddt6qpbequ35enn9blb485tt9vlno.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXJxGwdgBHW92uZtbER8MFjxAR5t6Ehl0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529019554109-nu9ddt6qpbequ35enn9blb485tt9vlno.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "529019554109-6dn239aukr3bggro95fgqce54akcq308.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.greenCart"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
