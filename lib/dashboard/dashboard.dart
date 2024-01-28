@@ -1,7 +1,6 @@
 // dashboard.dart
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import '../layouts/auth.dart';
+
 import 'package:flutter_svg/svg.dart';
 
 class Dashboard extends StatefulWidget {
