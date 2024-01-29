@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -19,7 +20,7 @@ class _LoginState extends State<Login> {
   Future<dynamic> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
+      print("Google User: ${googleUser}");
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;
 
@@ -44,6 +45,7 @@ class _LoginState extends State<Login> {
   }
 
   ValueNotifier userCredential = ValueNotifier('');
+  // print(userCredential);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +67,8 @@ class _LoginState extends State<Login> {
                       ),
                       onPressed: () async {
                         userCredential.value = await signInWithGoogle();
+                        context.go('/');
+                        print("User credentials: ${userCredential}");
                       },
                     ),
                   ),
