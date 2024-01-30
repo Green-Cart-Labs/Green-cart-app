@@ -8,29 +8,24 @@ import 'package:flutter/foundation.dart'
 ///
 /// Example:
 /// ```dart
-
+/// import 'firebase_options.dart';
+/// // ...
+/// await Firebase.initializeApp(
+///   options: DefaultFirebaseOptions.currentPlatform,
+/// );
 /// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -48,11 +43,43 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyA5k__jLdpp5IvLiOFO50DAQ7UXxVq4YB8',
+    appId: '1:529019554109:web:147852f796984f4d725d54',
+    messagingSenderId: '529019554109',
+    projectId: 'book-my-ground-331b5',
+    authDomain: 'book-my-ground-331b5.firebaseapp.com',
+    storageBucket: 'book-my-ground-331b5.appspot.com',
+    measurementId: 'G-2VC9DJLVKJ',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAXJxGwdgBHW92uZtbER8MFjxAR5t6Ehl0',
     appId: '1:529019554109:android:e30d4efa057826cf725d54',
     messagingSenderId: '529019554109',
     projectId: 'book-my-ground-331b5',
     storageBucket: 'book-my-ground-331b5.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyCfKwOD7cwcntmkcGeWGk61dYCuyKgLzIQ',
+    appId: '1:529019554109:ios:9dea5f1280a137be725d54',
+    messagingSenderId: '529019554109',
+    projectId: 'book-my-ground-331b5',
+    storageBucket: 'book-my-ground-331b5.appspot.com',
+    androidClientId: '529019554109-6r7u7389ad56t9ihfnu14n6shjrjaafq.apps.googleusercontent.com',
+    iosClientId: '529019554109-6dn239aukr3bggro95fgqce54akcq308.apps.googleusercontent.com',
+    iosBundleId: 'com.example.greenCart',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCfKwOD7cwcntmkcGeWGk61dYCuyKgLzIQ',
+    appId: '1:529019554109:ios:4b56eb9b5dc051b1725d54',
+    messagingSenderId: '529019554109',
+    projectId: 'book-my-ground-331b5',
+    storageBucket: 'book-my-ground-331b5.appspot.com',
+    androidClientId: '529019554109-6r7u7389ad56t9ihfnu14n6shjrjaafq.apps.googleusercontent.com',
+    iosClientId: '529019554109-k62ib7fa2tsbfi0e4cmbmh9qh14pct86.apps.googleusercontent.com',
+    iosBundleId: 'com.example.greenCart.RunnerTests',
   );
 }

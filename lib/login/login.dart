@@ -19,6 +19,7 @@ class _LoginState extends State<Login> {
 
   Future<dynamic> signInWithGoogle() async {
     try {
+      print(0);
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       print("Google User: ${googleUser}");
       final GoogleSignInAuthentication? googleAuth =
@@ -67,7 +68,7 @@ class _LoginState extends State<Login> {
                       ),
                       onPressed: () async {
                         userCredential.value = await signInWithGoogle();
-                        context.go('/');
+                        // context.go('/');
                         print("User credentials: ${userCredential}");
                       },
                     ),
