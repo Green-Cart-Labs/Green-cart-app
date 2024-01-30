@@ -14,27 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "529019554109-6r7u7389ad56t9ihfnu14n6shjrjaafq.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.green_cart",
-            "certificate_hash": "a2d555567446909821314689855c4439b900a740"
-          }
-        },
-        {
           "client_id": "529019554109-i5panhdp317ug3uecvl07eiuue3vn5kc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.green_cart",
             "certificate_hash": "84dc8aa55620cf93c1fb29fe53170541d72330fb"
-          }
-        },
-        {
-          "client_id": "529019554109-m8nfghe7ok8ntj3mqnvd70iv6210rj8j.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.green_cart",
-            "certificate_hash": "e9309251d9df9239d0b6392079d50aadaa8d0734"
           }
         },
         {
