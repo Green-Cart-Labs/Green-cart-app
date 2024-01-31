@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
                       ),
                       onPressed: () async {
                         userCredential.value = await signInWithGoogle();
-                        // context.go('/');
+                        context.go('/');
                         print("User credentials: ${userCredential}");
                       },
                     ),

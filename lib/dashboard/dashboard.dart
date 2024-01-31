@@ -20,22 +20,25 @@ class _DashboardState extends State<Dashboard> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              SvgPicture.asset(
-                assetName,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Text(
-                "BLOOM",
-                style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900),
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+            child: Row(
+              children: [
+                SvgPicture.asset(
+                  assetName,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  "BLOOM",
+                  style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w900),
+                ),
+              ],
+            ),
           ),
           const SizedBox(
             height: 60,
@@ -88,9 +91,9 @@ class _DashboardState extends State<Dashboard> {
               ),
             ],
           ),
-          const SizedBox(
-            height: 15,
-          ),
+          // const SizedBox(
+          //   height: 15,
+          // ),
           GridView.builder(
               itemCount: 4,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
