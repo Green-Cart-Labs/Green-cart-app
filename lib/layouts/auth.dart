@@ -1,4 +1,6 @@
 import 'dart:math';
+import 'package:cupertino_icons/cupertino_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:green_cart/community/community.dart';
@@ -71,20 +73,23 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: const Color(0xFF295B3E),
-          unselectedItemColor: const Color(0xFF909E47),
+          unselectedItemColor: const Color.fromARGB(255, 171, 202, 13),
+          showUnselectedLabels: false,
           type: BottomNavigationBarType.fixed,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.groups),
+              icon: Icon(CupertinoIcons.group, size: 30),
+              activeIcon: Icon(CupertinoIcons.group_solid, size: 30),
               label: 'Community',
               // backgroundColor: Theme.of(context).primaryColor,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
+              icon: Icon(CupertinoIcons.qrcode),
               label: 'Scan',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(CupertinoIcons.house),
+              activeIcon: Icon(CupertinoIcons.house_fill),
               label: 'Home',
             ),
             BottomNavigationBarItem(
@@ -92,7 +97,8 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
               label: 'Tracker',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(CupertinoIcons.person),
+              activeIcon: Icon(CupertinoIcons.person_fill),
               label: 'Profile',
             ),
           ],
