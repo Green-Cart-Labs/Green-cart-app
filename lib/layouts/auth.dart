@@ -1,9 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:green_cart/community/community.dart';
 import 'package:green_cart/dashboard/dashboard.dart';
-import 'package:green_cart/login/login.dart';
 import 'package:green_cart/profile/profile.dart';
 import '../theme.dart';
 
@@ -23,7 +21,6 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-
     });
     // pageController.animateToPage(index, duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
     pageController.jumpToPage(index);
@@ -57,8 +54,7 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
           ),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child:
-            PageView(
+            child: PageView(
               controller: pageController,
               physics: const NeverScrollableScrollPhysics(),
               // scrollDirection: ,
@@ -69,6 +65,10 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
             // widget.child,
           ),
         ),
+        floatingActionButton: ChatButton(),
+        endDrawer: ChatDrawer(),
+        floatingActionButtonLocation: const TopFloatingActionButtonLocation(),
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: const Color(0xFF295B3E),
           unselectedItemColor: const Color(0xFF909E47),
@@ -102,5 +102,84 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
         ),
       ),
     );
+  }
+}
+
+class TopFloatingActionButtonLocation extends FloatingActionButtonLocation {
+  const TopFloatingActionButtonLocation();
+
+  @override
+  Offset getOffset(ScaffoldPrelayoutGeometry scaffoldGeometry) {
+    return Offset(
+      scaffoldGeometry.scaffoldSize.width - 80.0,
+      scaffoldGeometry.scaffoldSize.height - 130.0,
+    );
+  }
+
+  @override
+  String toString() => 'TopFloatingActionButtonLocation';
+}
+
+class ChatDrawer extends StatefulWidget {
+  @override
+  _ChatDrawerState createState() => _ChatDrawerState();
+}
+
+class _ChatDrawerState extends State<ChatDrawer> {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: GestureDetector(
+        onVerticalDragEnd: (details) {
+          // Close the drawer when swiped down
+          if (details.primaryVelocity! > 0) {
+            Navigator.of(context).pop();
+          }
+        },
+        child: Container(
+          color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppBar(
+                title: const Text('Chat Screen'),
+                automaticallyImplyLeading: false,
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () {
+                      // Close the drawer when close button is pressed
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+              const Expanded(
+                child: Center(
+                  child: Text('Chat screen content goes here.'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ChatButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        // Open the chat drawer using a method from the parent widget
+        openChatDrawer(context);
+      },
+      child: const Icon(Icons.chat),
+    );
+  }
+
+  void openChatDrawer(BuildContext context) {
+    Scaffold.of(context).openEndDrawer();
   }
 }
