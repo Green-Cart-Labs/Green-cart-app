@@ -5,6 +5,8 @@ import 'package:green_cart/community/community.dart';
 import 'package:green_cart/dashboard/dashboard.dart';
 import 'package:green_cart/login/login.dart';
 import 'package:green_cart/profile/profile.dart';
+import 'package:green_cart/scan/productDetails.dart';
+import 'package:green_cart/scan/scan.dart';
 import '../theme.dart';
 
 class AuthGlobalWidget extends StatefulWidget {
@@ -32,9 +34,9 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
 
   List<Widget> pageList = [
     const Community(),
-    const Profile(),
+    const Scan(),
     const Dashboard(),
-    const Profile(),
+    const ProductDetails(),
     const Profile(),
   ];
 

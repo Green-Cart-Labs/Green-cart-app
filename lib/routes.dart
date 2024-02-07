@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:green_cart/community/community.dart';
 import 'package:green_cart/profile/profile.dart';
+import 'package:green_cart/scan/productDetails.dart';
+import 'package:green_cart/scan/scan.dart';
 import 'dashboard/dashboard.dart';
 import 'login/login.dart';
 import 'layouts/auth.dart';
@@ -28,6 +30,16 @@ final GoRouter router = GoRouter(
       name: 'community',
       path: '/community',
       builder: (context, state) => (const AuthGlobalWidget(child: Community())),
+    ),
+    GoRoute(
+      name: 'scan',
+      path: '/scan',
+      builder: (context, state) => (const AuthGlobalWidget(child: Scan())),
+    ),
+    GoRoute(
+      name: 'product',
+      path: '/product',
+      builder: (context, state) => (const AuthGlobalWidget(child: ProductDetails())),
     ),
   ],
 );
