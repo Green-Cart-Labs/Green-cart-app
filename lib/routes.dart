@@ -14,7 +14,9 @@ final GoRouter router = GoRouter(
     GoRoute(
       name: 'dashboard',
       path: '/',
-      builder: (context, state) => (const AuthGlobalWidget(child: Dashboard())),
+      builder: (context, state) => (const AuthGlobalWidget(myChildType: 'dashboard',
+          // const AuthGlobalWidget(myChildType: 'dashboard',
+      )),
     ),
     GoRoute(
       name: 'login',
@@ -24,22 +26,28 @@ final GoRouter router = GoRouter(
     GoRoute(
       name: 'profile',
       path: '/profile',
-      builder: (context, state) => (const AuthGlobalWidget(child: Profile())),
+      builder: (context, state) => (const AuthGlobalWidget(
+        myChildType: 'profile',
+      )),
     ),
     GoRoute(
       name: 'community',
       path: '/community',
-      builder: (context, state) => (const AuthGlobalWidget(child: Community())),
+      builder: (context, state) =>
+          (const AuthGlobalWidget(myChildType: 'community')),
     ),
     GoRoute(
       name: 'scan',
       path: '/scan',
-      builder: (context, state) => (const AuthGlobalWidget(child: Scan())),
+      builder: (context, state) =>
+          (const AuthGlobalWidget(myChildType: 'scan')),
     ),
     GoRoute(
       name: 'product',
       path: '/product',
-      builder: (context, state) => (const AuthGlobalWidget(child: ProductDetails())),
+      builder: (context, state) =>
+          // ProductDetails(),
+          (const AuthGlobalWidget(myChildType: 'product')),
     ),
   ],
 );

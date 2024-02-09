@@ -9,36 +9,76 @@ import 'package:green_cart/scan/productDetails.dart';
 import 'package:green_cart/scan/scan.dart';
 import '../theme.dart';
 
+// enum AppRoute {
+//   community,
+//   scan,
+//   dashboard,
+//   productDetails,
+//   profile,
+// }
+
+// final List<(String, Widget)> pageBothList = [
+//   ('community', Community()),
+//   ('scan', Scan()),
+//   ('dashboard', Dashboard()),
+//   ('product', ProductDetails()),
+//   ('profile', Profile())
+// ];
+
+final List<String> pageStringList = [
+  'community',
+  'scan',
+  'dashboard',
+  'community',
+  'profile',
+  'product',
+];
+
+final List<Widget> pageList = [
+  const Community(),
+  const Scan(),
+  const Dashboard(),
+  const Community(),
+  const Profile(),
+  const ProductDetails(),
+  // const ProductDetails(),
+
+];
+
 class AuthGlobalWidget extends StatefulWidget {
   // const AuthGlobalWidget({Key? key}) : super(key: key);
-  final Widget child;
-  const AuthGlobalWidget({super.key, required this.child});
+  // final Widget child;
+  final String myChildType;
+  const AuthGlobalWidget({super.key, required this.myChildType});
 
   @override
   _AuthGlobalWidgetState createState() => _AuthGlobalWidgetState();
 }
 
 class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
-  int _selectedIndex = 2;
-  PageController pageController = PageController();
+  late int _selectedIndex;
+  late PageController pageController = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = pageStringList.indexOf(widget.myChildType);
+    print("index: $_selectedIndex");
+    pageController = PageController(initialPage: _selectedIndex);
+  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-
     });
-    // pageController.animateToPage(index, duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
-    pageController.jumpToPage(index);
-    // !pageController.keepPage;
+    print("index: $_selectedIndex , $index");
+    if(index == 5){
+      pageList.elementAt(_selectedIndex);
+    // pageController.jumpTo(ProductDetails());
+    } else {
+      pageController.jumpToPage(index);
+    }
   }
-
-  List<Widget> pageList = [
-    const Community(),
-    const Scan(),
-    const Dashboard(),
-    const ProductDetails(),
-    const Profile(),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +99,7 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
           ),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child:
-            PageView(
+            child: PageView(
               controller: pageController,
               physics: const NeverScrollableScrollPhysics(),
               // scrollDirection: ,
