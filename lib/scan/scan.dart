@@ -6,6 +6,7 @@ import 'package:green_cart/layouts/auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:green_cart/layouts/auth.dart';
 import 'package:green_cart/scan/productDetails.dart';
+import 'package:green_cart/utils/push_with_gradient.dart';
 
 class Scan extends StatefulWidget {
   const Scan({super.key});
@@ -51,19 +52,19 @@ class _ScanState extends State<Scan> {
         ElevatedButton(
           onPressed: () async {
             await scanBarcodeNormal();
-
-            if (_scanBarcodeResult.isNotEmpty) {
-              print("Product Details");
+            if (_scanBarcodeResult.isNotEmpty && _scanBarcodeResult != '-1') {
+              print(_scanBarcodeResult);
               try {
                 // ProductDetails();
-                context.go('/product');
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductDetails()));
+
+                if (mounted) pushPageWithGradient(context, child: const ProductDetails());
                 print("Product details");
               } catch (e) {
                 print("error: $e");
               }
-              // const AuthGlobalWidget(myChildType: 'product');
-              // context.go('/product');
+            }
+            else {
+              if (mounted) context.go('/scan');
             }
           },
           // scanBarcodeNormal,

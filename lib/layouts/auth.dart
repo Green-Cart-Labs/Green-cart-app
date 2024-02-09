@@ -9,6 +9,7 @@ import 'package:green_cart/login/login.dart';
 import 'package:green_cart/profile/profile.dart';
 import 'package:green_cart/scan/productDetails.dart';
 import 'package:green_cart/scan/scan.dart';
+import 'package:green_cart/widgets/gradient_container.dart';
 import '../theme.dart';
 
 // enum AppRoute {
@@ -89,16 +90,7 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
       theme: themeData,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFF909E47), Color(0xFFF6F7ED), Color(0xFF909E47)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
+        body: GradientContainer(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: PageView(

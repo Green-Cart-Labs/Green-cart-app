@@ -42,12 +42,5 @@ final GoRouter router = GoRouter(
       builder: (context, state) =>
           (const AuthGlobalWidget(myChildType: 'scan')),
     ),
-    GoRoute(
-      name: 'product',
-      path: '/product',
-      builder: (context, state) =>
-          // ProductDetails(),
-          (const AuthGlobalWidget(myChildType: 'product')),
-    ),
   ],
 );
