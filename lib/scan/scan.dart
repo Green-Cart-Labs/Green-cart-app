@@ -64,7 +64,7 @@ class _ScanState extends State<Scan> {
               }
             }
             else {
-              if (mounted) context.go('/scan');
+              // if (mounted) context.go('/scan');
             }
           },
           // scanBarcodeNormal,
