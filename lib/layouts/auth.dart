@@ -1,11 +1,9 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:green_cart/community/community.dart';
 import 'package:green_cart/dashboard/dashboard.dart';
-import 'package:green_cart/login/login.dart';
 import 'package:green_cart/profile/profile.dart';
 import '../theme.dart';
+import 'package:green_cart/chat.dart';
 
 class AuthGlobalWidget extends StatefulWidget {
   // const AuthGlobalWidget({Key? key}) : super(key: key);
@@ -23,7 +21,6 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-
     });
     // pageController.animateToPage(index, duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
     pageController.jumpToPage(index);
@@ -40,7 +37,6 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
 
   @override
   Widget build(BuildContext context) {
-    log(10);
     return MaterialApp(
       theme: themeData,
       debugShowCheckedModeBanner: false,
@@ -57,8 +53,7 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
           ),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child:
-            PageView(
+            child: PageView(
               controller: pageController,
               physics: const NeverScrollableScrollPhysics(),
               // scrollDirection: ,
@@ -69,6 +64,10 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
             // widget.child,
           ),
         ),
+        floatingActionButton: ChatButton(),
+        // endDrawer: ChatDrawer(),
+        floatingActionButtonLocation: const TopFloatingActionButtonLocation(),
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: const Color(0xFF295B3E),
           unselectedItemColor: const Color(0xFF909E47),
