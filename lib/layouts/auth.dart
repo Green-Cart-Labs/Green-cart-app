@@ -2,15 +2,50 @@ import 'dart:math';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:green_cart/community/community.dart';
 import 'package:green_cart/dashboard/dashboard.dart';
-import 'package:green_cart/login/login.dart';
 import 'package:green_cart/profile/profile.dart';
 import 'package:green_cart/scan/productDetails.dart';
 import 'package:green_cart/scan/scan.dart';
 import 'package:green_cart/widgets/gradient_container.dart';
 import '../theme.dart';
+import 'package:green_cart/chat.dart';
+
+// enum AppRoute {
+//   community,
+//   scan,
+//   dashboard,
+//   productDetails,
+//   profile,
+// }
+
+// final List<(String, Widget)> pageBothList = [
+//   ('community', Community()),
+//   ('scan', Scan()),
+//   ('dashboard', Dashboard()),
+//   ('product', ProductDetails()),
+//   ('profile', Profile())
+// ];
+
+final List<String> pageStringList = [
+  'community',
+  'scan',
+  'dashboard',
+  'community',
+  'profile',
+  'product',
+];
+
+final List<Widget> pageList = [
+  const Community(),
+  const Scan(),
+  const Dashboard(),
+  const Community(),
+  const Profile(),
+  ProductDetails(""),
+  // const ProductDetails(),
+
+];
 
 // enum AppRoute {
 //   community,
@@ -85,7 +120,6 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
 
   @override
   Widget build(BuildContext context) {
-    log(10);
     return MaterialApp(
       theme: themeData,
       debugShowCheckedModeBanner: false,
@@ -104,6 +138,10 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
             // widget.child,
           ),
         ),
+        floatingActionButton: ChatButton(),
+        // endDrawer: ChatDrawer(),
+        floatingActionButtonLocation: const TopFloatingActionButtonLocation(),
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: const Color(0xFF295B3E),
           unselectedItemColor: const Color.fromARGB(255, 171, 202, 13),
