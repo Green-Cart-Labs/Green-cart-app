@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:green_cart/community/community.dart';
 import 'package:green_cart/profile/profile.dart';
+import 'package:green_cart/scan/productDetails.dart';
+import 'package:green_cart/scan/scan.dart';
 import 'dashboard/dashboard.dart';
 import 'login/login.dart';
 import 'layouts/auth.dart';
@@ -12,7 +14,9 @@ final GoRouter router = GoRouter(
     GoRoute(
       name: 'dashboard',
       path: '/',
-      builder: (context, state) => (const AuthGlobalWidget(child: Dashboard())),
+      builder: (context, state) => (const AuthGlobalWidget(myChildType: 'dashboard',
+          // const AuthGlobalWidget(myChildType: 'dashboard',
+      )),
     ),
     GoRoute(
       name: 'login',
@@ -22,12 +26,21 @@ final GoRouter router = GoRouter(
     GoRoute(
       name: 'profile',
       path: '/profile',
-      builder: (context, state) => (const AuthGlobalWidget(child: Profile())),
+      builder: (context, state) => (const AuthGlobalWidget(
+        myChildType: 'profile',
+      )),
     ),
     GoRoute(
       name: 'community',
       path: '/community',
-      builder: (context, state) => (const AuthGlobalWidget(child: Community())),
+      builder: (context, state) =>
+          (const AuthGlobalWidget(myChildType: 'community')),
+    ),
+    GoRoute(
+      name: 'scan',
+      path: '/scan',
+      builder: (context, state) =>
+          (const AuthGlobalWidget(myChildType: 'scan')),
     ),
   ],
 );
