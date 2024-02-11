@@ -43,7 +43,7 @@ final List<Widget> pageList = [
   const Dashboard(),
   const Community(),
   const Profile(),
-  const ProductDetails(),
+  ProductDetails(""),
   // const ProductDetails(),
 
 ];
@@ -92,7 +92,7 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
       home: Scaffold(
         body: GradientContainer(
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.only(top: 20.0, right: 20.0, left: 20.0),
             child: PageView(
               controller: pageController,
               physics: const NeverScrollableScrollPhysics(),

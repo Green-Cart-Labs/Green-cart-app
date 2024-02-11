@@ -209,7 +209,8 @@ class _DashboardState extends State<Dashboard> {
                 crossAxisCount: 1,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
-                childAspectRatio: 1.35,
+                childAspectRatio: 1.3,
+                // childAspectRatio: (constraints.maxHeight/constraints.maxWidth) * 1.35,
                 // mainAxisExtent: double.infinity,
                 //have to adjust childAspectRatio according to content inside card
               ),
@@ -233,7 +234,7 @@ class _DashboardState extends State<Dashboard> {
                       children: [
                         Flexible(
                           flex: 2,
-                          fit: FlexFit.tight,
+                          fit: FlexFit.loose,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -258,12 +259,12 @@ class _DashboardState extends State<Dashboard> {
                                 height: 15,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Flexible(
                                     flex: 1,
-                                    fit: FlexFit.tight,
+                                    fit: FlexFit.loose,
                                     child: Container(
                                       decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
@@ -273,12 +274,9 @@ class _DashboardState extends State<Dashboard> {
                                       width: 20,
                                     ),
                                   ),
-                                  // const SizedBox(
-                                  //   width: 10,
-                                  // ),
                                   const Flexible(
                                     flex: 2,
-                                    fit: FlexFit.tight,
+                                    fit: FlexFit.loose,
                                     child: Text(
                                       "No ingredients that threaten species ",
                                       style: TextStyle(
@@ -298,12 +296,12 @@ class _DashboardState extends State<Dashboard> {
                                 height: 15,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Flexible(
                                     flex: 1,
-                                    fit: FlexFit.tight,
+                                    fit: FlexFit.loose,
                                     child: Container(
                                       decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
@@ -318,7 +316,7 @@ class _DashboardState extends State<Dashboard> {
                                   // ),
                                   const Flexible(
                                     flex: 2,
-                                    fit: FlexFit.tight,
+                                    fit: FlexFit.loose,
                                     child: Text(
                                       "No ingredients that threaten species ",
                                       style: TextStyle(
@@ -338,12 +336,12 @@ class _DashboardState extends State<Dashboard> {
                                 height: 15,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Flexible(
                                     flex: 1,
-                                    fit: FlexFit.tight,
+                                    fit: FlexFit.loose,
                                     child: Container(
                                       decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
@@ -358,7 +356,7 @@ class _DashboardState extends State<Dashboard> {
                                   // ),
                                   const Flexible(
                                     flex: 2,
-                                    fit: FlexFit.tight,
+                                    fit: FlexFit.loose,
                                     child: Text(
                                       "No ingredients that threaten species ",
                                       style: TextStyle(
