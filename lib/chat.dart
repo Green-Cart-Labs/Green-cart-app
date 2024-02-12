@@ -42,7 +42,7 @@ class _ChatDrawerState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.8,
+      // height: MediaQuery.of(context).size.height * 0.8,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -74,6 +74,7 @@ class ChatButton extends StatelessWidget {
       onPressed: () {
         // Open the chat drawer using a method from the parent widget
         showModalBottomSheet(
+          isScrollControlled: true,
           context: context,
           builder: (BuildContext context) {
             return ChatDrawer();
@@ -129,6 +130,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             child: _buildTextComposer(),
           ),
+          SizedBox(height: MediaQuery.of(context).viewInsets.bottom)
         ],
       ),
     );
