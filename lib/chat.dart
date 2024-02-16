@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'api_service.dart';
 
 class TopFloatingActionButtonLocation extends FloatingActionButtonLocation {
   const TopFloatingActionButtonLocation();
@@ -96,13 +99,16 @@ class _ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = TextEditingController();
 
-  void _handleSubmitted(String text) {
+  void _handleSubmitted(String text) async {
     _textController.clear();
-
-    Future.delayed(Duration(seconds: 1), () {
+    var chatRespose = await ApiService()
+        .getChat(text); // assuming ApiService().getChat() returns a Future
+    log("chatRespose: $chatRespose");
+    await Future.delayed(Duration(seconds: 1), () {
       setState(() {
         _messages.insert(0, ChatMessage(text: text, isUser: true));
-        _messages.insert(0, ChatMessage(text: 'Bot: $text', isUser: false));
+        _messages.insert(
+            0, ChatMessage(text: 'Bot: $chatRespose', isUser: false));
       });
     });
   }
@@ -138,22 +144,22 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget _buildTextComposer() {
     return IconTheme(
-      data: IconThemeData(color: Colors.blue),
+      data: const IconThemeData(color: Colors.blue),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 8.0),
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Row(
           children: <Widget>[
             Flexible(
               child: TextField(
                 controller: _textController,
                 onSubmitted: _handleSubmitted,
-                decoration: InputDecoration.collapsed(
+                decoration: const InputDecoration.collapsed(
                   hintText: 'Send a message',
                 ),
               ),
             ),
             IconButton(
-              icon: Icon(Icons.send),
+              icon: const Icon(Icons.send),
               onPressed: () => _handleSubmitted(_textController.text),
             ),
           ],
