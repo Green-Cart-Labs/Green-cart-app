@@ -11,22 +11,6 @@ import 'package:green_cart/widgets/gradient_container.dart';
 import '../theme.dart';
 import 'package:green_cart/chat.dart';
 
-// enum AppRoute {
-//   community,
-//   scan,
-//   dashboard,
-//   productDetails,
-//   profile,
-// }
-
-// final List<(String, Widget)> pageBothList = [
-//   ('community', Community()),
-//   ('scan', Scan()),
-//   ('dashboard', Dashboard()),
-//   ('product', ProductDetails()),
-//   ('profile', Profile())
-// ];
-
 final List<String> pageStringList = [
   'community',
   'scan',
@@ -42,7 +26,7 @@ final List<Widget> pageList = [
   const Dashboard(),
   const Community(),
   const Profile(),
-  ProductDetails(""),
+  ProductDetails(0),
   // const ProductDetails(),
 
 ];
@@ -104,8 +88,8 @@ class _AuthGlobalWidgetState extends State<AuthGlobalWidget> {
         ),
         floatingActionButton: ChatButton(),
         // endDrawer: ChatDrawer(),
-        floatingActionButtonLocation: const TopFloatingActionButtonLocation(),
-        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        // floatingActionButtonLocation: const TopFloatingActionButtonLocation(),
+        // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: const Color(0xFF295B3E),
           unselectedItemColor: const Color.fromARGB(255, 171, 202, 13),
