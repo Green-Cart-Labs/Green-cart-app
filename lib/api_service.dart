@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:green_cart/models/barcodeDetails.dart';
 import 'package:http/http.dart' as http;
 import 'constants.dart';
 
@@ -25,5 +26,39 @@ class ApiService {
       log('Error: $e');
       return null;
     }
+  }
+
+  Future<BarcodeDetails> getBarcode(int barcode, String user_id) async {
+    try {
+      // int? barcode = int.tryParse(barcode);
+      var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.barcodeEndpoint);
+      var response = await http.post(url,
+          headers: <String, String>{
+            'Content-Type': 'application/json',
+          },
+          body: jsonEncode({
+            'user_id': user_id,
+            'barcode': barcode,
+          }));
+      // var data = jsonDecode(response.body.toString());
+
+      if (response.statusCode == 201) {
+        // if (barcode != null){
+        // String _barcode = barcodeDetailsToJson(response.body as BarcodeDetails);
+        return BarcodeDetails.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+        // } else {
+        //   log('Invalid barcode: $barcode');
+        // }
+      } else {
+        log('Failed to load barcode details: ${response.statusCode}');
+        throw Exception('Failed to create album.');
+        // return null;
+      }
+    } catch (e) {
+      log('Error: $e');
+      // return null;
+    }
+    // return null;
+    throw Exception('Failed to create album.');
   }
 }

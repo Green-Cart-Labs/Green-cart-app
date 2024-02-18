@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -22,7 +24,7 @@ class Scan extends StatefulWidget {
 }
 
 class _ScanState extends State<Scan> with WidgetsBindingObserver {
-  String _scanBarcodeResult = '';
+  int _scanBarcodeResult = 0;
   // late CameraController controller;
   // late Future<void> _initializeControllerFuture;
   //
@@ -316,7 +318,7 @@ class _ScanState extends State<Scan> with WidgetsBindingObserver {
                           ElevatedButton(
                             onPressed: () async {
                               await scanBarcodeNormal();
-                              if (_scanBarcodeResult.isNotEmpty && _scanBarcodeResult != '-1') {
+                              if (_scanBarcodeResult != 0 && _scanBarcodeResult != '-1') {
                                 print(_scanBarcodeResult);
                                 try {
                                   // ProductDetails();
@@ -364,11 +366,13 @@ class _ScanState extends State<Scan> with WidgetsBindingObserver {
       int? parsedResult = int.tryParse(barcodeScanRes);
       if (parsedResult != null) {
         setState(() {
-          _scanBarcodeResult = parsedResult.toString();
+          // _scanBarcodeResult = parsedResult.toString();
+          _scanBarcodeResult = parsedResult;
         });
       } else {
         setState(() {
-          _scanBarcodeResult = "Failed to parse barcode as an integer";
+          // _scanBarcodeResult = "Failed to parse barcode as an integer";
+          log('Failed to parse barcode as an integer');
         });
       }
     } on PlatformException {
