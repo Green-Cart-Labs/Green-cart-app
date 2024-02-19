@@ -25,10 +25,12 @@ class _ProductDetailsState extends State<ProductDetails> {
   // BarcodeDetails barcodeDetails ;
   // late String _barcodeDetails = '';
   // int? barcode = int.tryParse(widget.child);
-  late Future<String> _futureBarcodeDetails;
+  // late Future<String> _futureBarcodeDetails;
+  late Future<BarcodeDetails>? _futureBarcodeDetails;
   final http.Client httpClient = http.Client();
+  late String _jsonData;
 
-  Future<String> getBarcode(int barcode, String user_id) async {
+  Future<BarcodeDetails> getBarcode(int barcode, String user_id) async {
     try {
       log('entered getBarcode');
       var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.barcodeEndpoint);
@@ -43,9 +45,14 @@ class _ProductDetailsState extends State<ProductDetails> {
       log('response statuscode: ${response}');
 
       if (response.statusCode == 200) {
-        log('response statuscode: ${jsonDecode(response.body)}');
-        // log('message : ${BarcodeDetails.fromJson(jsonDecode(response.body))}');
-        return response.body;
+        log('response statuscode:: ${jsonDecode(response.body)}');
+        log('message : ${BarcodeDetails.fromJson(jsonDecode(response.body)).imageUrl}');
+        // setState(() {
+          // _jsonData = jsonDecode(response.body);
+          // _jsonData = BarcodeDetails.fromJson(response.body);
+        // });
+        // return response.body;
+        return BarcodeDetails.fromJson(jsonDecode(response.body) );
       } else {
         log('Failed to load barcode details: ${response.statusCode}');
         // throw Exception('Failed to create album.');
@@ -97,104 +104,114 @@ class _ProductDetailsState extends State<ProductDetails> {
       body: GradientContainer(
         child: Padding(
           padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 30.0),
-          child: FutureBuilder<String>(
+          child: FutureBuilder<BarcodeDetails?>(
             future: _futureBarcodeDetails,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
+                return Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: Row(
+                                children: [
+                                  Icon(Icons.arrow_back_ios,color: Theme.of(context).primaryColor,),
+                                  Text(
+                                    "Go back",
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                    ),
+                    const Center(child: CircularProgressIndicator()),
+                  ],
+                );
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else {
-                return Text('Barcode Details: ${snapshot.data}');
+                return  SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Row(
+                            children: [
+                              Icon(Icons.arrow_back_ios,color: Theme.of(context).primaryColor,),
+                              Text(
+                                "Go back",
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ],
+                          ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Text(
+                        "Product Name: ${snapshot.data!.name.toString()}",
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "Barcode No.: ${widget.child}",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Center(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image.network(
+                            'https:${snapshot.data!.imageUrl.toString()}',
+                            // 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png',
+                            fit: BoxFit.fill,
+                          ),
+                          // SvgPicture.asset(assetName, fit: BoxFit.contain,),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "Product Details:",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text("data: ${snapshot.data!.brands}"),
+                  // Text('Barcode Details: ${snapshot.data}');
+                    ],
+                  ),
+                );
               }
             },
           )
-          // SingleChildScrollView(
-          //   scrollDirection: Axis.vertical,
-          //   child: Column(
-          //     mainAxisAlignment: MainAxisAlignment.start,
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: [
-          //       IconButton(
-          //           onPressed: () {
-          //             Navigator.pop(context);
-          //           },
-          //           icon: Row(
-          //             children: [
-          //               Icon(Icons.arrow_back_ios,color: Theme.of(context).primaryColor,),
-          //               Text(
-          //                 "Go back",
-          //                 style: TextStyle(
-          //                   color: Theme.of(context).primaryColor,
-          //                   fontWeight: FontWeight.w700,
-          //                   fontSize: 18,
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //       ),
-          //       const SizedBox(
-          //         height: 30,
-          //       ),
-          //       const Text(
-          //         "Product Name",
-          //         style: TextStyle(
-          //           fontSize: 24,
-          //           fontWeight: FontWeight.bold,
-          //         ),
-          //       ),
-          //       const SizedBox(
-          //         height: 10,
-          //       ),
-          //       Text(
-          //         "Barcode No.: ${widget.child}",
-          //         style: const TextStyle(
-          //           fontSize: 18,
-          //           // fontWeight: FontWeight.bold,
-          //         ),
-          //       ),
-          //       const SizedBox(
-          //         height: 20,
-          //       ),
-          //       ClipRRect(
-          //         borderRadius: BorderRadius.circular(15),
-          //         child: Image.network(
-          //           'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png',
-          //           fit: BoxFit.fill,
-          //         ),
-          //         // SvgPicture.asset(assetName, fit: BoxFit.contain,),
-          //       ),
-          //       const SizedBox(
-          //         height: 20,
-          //       ),
-          //       const Text(
-          //         "Product Details:",
-          //         style: TextStyle(
-          //           fontSize: 18,
-          //           fontWeight: FontWeight.w600,
-          //         ),
-          //       ),
-          //       // _barcodeDetails == null || _barcodeDetails!.isEmpty
-          //       //     ? const Center(
-          //       //   child: CircularProgressIndicator(),
-          //       // )
-          //       //     :
-          //       Text("data: "),
-          //           // "${_barcodeDetails.toString()}"),
-          //       // ListView.builder(
-          //       //       physics: NeverScrollableScrollPhysics(),
-          //       //       shrinkWrap: true,
-          //       //       // itemCount: barcodeDetails?.length,
-          //       //       itemCount: 10,
-          //       //       itemBuilder: (context, index) {
-          //       //         return Container(
-          //       //           child: Text(' {response}'),
-          //       //         );
-          //       //       },
-          //       //     )
-          //     ],
-          //   ),
-          // ),
         ),
       ),
     );

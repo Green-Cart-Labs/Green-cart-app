@@ -2,28 +2,28 @@ import 'dart:convert';
 
 BarcodeDetails barcodeDetailsFromJson(String str) => BarcodeDetails.fromJson(json.decode(str));
 
-// String barcodeDetailsToJson(BarcodeDetails data) => json.encode(data.toJson());
+String barcodeDetailsToJson(BarcodeDetails data) => json.encode(data.toJson());
 
 class BarcodeDetails {
-  int id;
-  String name;
-  List<String> allergens;
-  List<String> brands;
-  int carbonFootprint;
-  List<String> categories;
-  List<String> countries;
-  String ecoscoreGrade;
-  int ecoscoreScore;
-  String imageUrl;
-  List<String> ingredients;
-  int novaGroup;
-  Nutri nutrientLevels;
-  String nutriscoreGrade;
-  int nutriscoreScore;
-  Nutri nutriments;
-  String packaging;
-  List<String> warnings;
-  String historyId;
+  int? id;
+  String? name;
+  List<String>? allergens;
+  List<String>? brands;
+  int? carbonFootprint;
+  List<String>? categories;
+  List<String>? countries;
+  String? ecoscoreGrade;
+  int? ecoscoreScore;
+  String? imageUrl;
+  List<String>? ingredients;
+  int? novaGroup;
+  Nutri? nutrientLevels;
+  String? nutriscoreGrade;
+  int? nutriscoreScore;
+  Nutri? nutriments;
+  String? packaging;
+  List<String>? warnings;
+  String? historyId;
 
   BarcodeDetails({
     required this.id,
@@ -69,27 +69,27 @@ class BarcodeDetails {
     historyId: json["history_id"],
   );
 
-  // Map<String, dynamic> toJson() => {
-  //   "id": id,
-  //   "name": name,
-  //   "allergens": List<dynamic>.from(allergens.map((x) => x)),
-  //   "brands": List<dynamic>.from(brands.map((x) => x)),
-  //   "carbon_footprint": carbonFootprint,
-  //   "categories": List<dynamic>.from(categories.map((x) => x)),
-  //   "countries": List<dynamic>.from(countries.map((x) => x)),
-  //   "ecoscore_grade": ecoscoreGrade,
-  //   "ecoscore_score": ecoscoreScore,
-  //   "image_url": imageUrl,
-  //   "ingredients": List<dynamic>.from(ingredients.map((x) => x)),
-  //   "nova_group": novaGroup,
-  //   "nutrient_levels": nutrientLevels.toJson(),
-  //   "nutriscore_grade": nutriscoreGrade,
-  //   "nutriscore_score": nutriscoreScore,
-  //   "nutriments": nutriments.toJson(),
-  //   "packaging": packaging,
-  //   "warnings": List<dynamic>.from(warnings.map((x) => x)),
-  //   "history_id": historyId,
-  // };
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "allergens": List<dynamic>.from(allergens!.map((x) => x)),
+    "brands": List<dynamic>.from(brands!.map((x) => x)),
+    "carbon_footprint": carbonFootprint,
+    "categories": List<dynamic>.from(categories!.map((x) => x)),
+    "countries": List<dynamic>.from(countries!.map((x) => x)),
+    "ecoscore_grade": ecoscoreGrade,
+    "ecoscore_score": ecoscoreScore,
+    "image_url": imageUrl,
+    "ingredients": List<dynamic>.from(ingredients!.map((x) => x)),
+    "nova_group": novaGroup,
+    "nutrient_levels": nutrientLevels?.toJson(),
+    "nutriscore_grade": nutriscoreGrade,
+    "nutriscore_score": nutriscoreScore,
+    "nutriments": nutriments?.toJson(),
+    "packaging": packaging,
+    "warnings": List<dynamic>.from(warnings!.map((x) => x)),
+    "history_id": historyId,
+  };
 }
 
 class Nutri {
@@ -98,6 +98,6 @@ class Nutri {
   factory Nutri.fromJson(Map<String, dynamic> json) => Nutri(
   );
 
-  // Map<String, dynamic> toJson() => {
-  // };
+  Map<String, dynamic> toJson() => {
+  };
 }
