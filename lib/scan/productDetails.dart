@@ -61,6 +61,8 @@ class _ProductDetailsState extends State<ProductDetails> {
     throw Exception('Failed.');
   }
 
+// <<<<<<< HEAD
+// =======
 
   final FirebaseAuth auth = FirebaseAuth.instance;
   String? getUserId() {
@@ -69,6 +71,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     return uid;
   }
 
+// >>>>>>> master
   // Future<Nutri> getNutri(int barcode, String user_id) async {
   //   try {
   //     log('entered getBarcode');
@@ -107,7 +110,12 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   void initState() {
     super.initState();
+// <<<<<<< HEAD
+//       _futureBarcodeDetails = getBarcode(widget.child, '0');
+      // _futureNutriDetails = getNutri(widget.child, '0');
+// =======
     _futureBarcodeDetails = getBarcode(widget.child, getUserId() ?? '0');
+// >>>>>>> master
 
   }
 
@@ -225,7 +233,6 @@ class _ProductDetailsState extends State<ProductDetails> {
       floatingActionButton: ChatButton(),
       body: GradientContainer(
         child: Padding(
-
           padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 30.0),
           child: FutureBuilder<BarcodeDetails?>(
             future: _futureBarcodeDetails,
@@ -258,40 +265,42 @@ class _ProductDetailsState extends State<ProductDetails> {
                 );
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
-              } else {
-                // updateContainerSize(snapshot.data!.novaGroup);
-
-                return  SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Row(
-                          children: [
-                            Icon(
-                              Icons.arrow_back_ios,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                            Text(
-                              "Go back",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Center(child: CircularProgressIndicator()),
-                    ],
-                  );
-                } else if (snapshot.hasError) {
+              }
+              // else {
+              //   // updateContainerSize(snapshot.data!.novaGroup);
+              //   return  SingleChildScrollView(
+              //     scrollDirection: Axis.vertical,
+              //     child: Column(
+              //       mainAxisAlignment: MainAxisAlignment.start,
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         IconButton(
+              //           onPressed: () {
+              //             Navigator.pop(context);
+              //           },
+              //           icon: Row(
+              //             children: [
+              //               Icon(
+              //                 Icons.arrow_back_ios,
+              //                 color: Theme.of(context).primaryColor,
+              //               ),
+              //               Text(
+              //                 "Go back",
+              //                 style: TextStyle(
+              //                   color: Theme.of(context).primaryColor,
+              //                   fontWeight: FontWeight.w700,
+              //                   fontSize: 18,
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //         ),
+              //         const Center(child: CircularProgressIndicator()),
+              //       ],
+              //     ),
+              //   );
+              //   }
+              else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else {
                   return SingleChildScrollView(
@@ -321,18 +330,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                             ],
                           ),
                         ),
-
-                      ),
-                      Text("${snapshot.data!.brands ?? 'No data' }", style: TextStyle(fontSize: 18),),
-                      // const SizedBox(
-                      //   height: 10,
+                      // ],
                       // ),
-                      Text(
-                        "Barcode No.: ${widget.child}",
-                        style: const TextStyle(
-                          fontSize: 18,
-                          // fontWeight: FontWeight.bold,
-                        ),
+
                         Text(
                           "Product Name: ${snapshot.data!.name.toString()}",
                           style: const TextStyle(
@@ -340,11 +340,34 @@ class _ProductDetailsState extends State<ProductDetails> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        Text("${snapshot.data!.brands ?? 'No data' }", style: TextStyle(fontSize: 18),),
+                        // const SizedBox(
+                        //   height: 10,
+                        // ),
+                        Text(
+                            "Barcode No.: ${widget.child}",
+                            style: const TextStyle(
+                              fontSize: 18,
+                              // fontWeight: FontWeight.bold,
+                            )),
                         const SizedBox(
                           height: 10,
                         ),
-
+                        Center(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.network(
+                              'https:${snapshot.data!.imageUrl.toString()}',
+                              // 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png',
+                              fit: BoxFit.fill,
+                            ),
+                            // SvgPicture.asset(assetName, fit: BoxFit.contain,),
+                          ),
+                        ),
+                      const SizedBox(
+                        height: 15,
                       ),
+                      // ),
                       Card(
                         color: getColorFromData(snapshot.data?.ecoscoreGrade),
                         child: Padding(
@@ -418,6 +441,82 @@ class _ProductDetailsState extends State<ProductDetails> {
                           ),
                         ),
                       ),
+// // <<<<<<< HEAD
+//                       Card(
+//                         color: getColorFromData(snapshot.data?.ecoscoreGrade),
+//                         child: Padding(
+//                           padding: const EdgeInsets.all(8.0),
+//                           child: Row(
+//                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                             children: [
+//                               CircleAvatar(
+//                                 child: Icon(Icons.eco, color: getColorFromData(snapshot.data?.ecoscoreGrade),),
+//                               ),
+//                               Column(
+//                                 mainAxisAlignment: MainAxisAlignment.start,
+//                                 crossAxisAlignment: CrossAxisAlignment.start,
+//                                 children: [
+//                                   Text("Eco Grade: ${(snapshot.data!.ecoscoreGrade ?? 'No data').toUpperCase()}",
+//                                     style: const TextStyle(
+//                                         // color: getTextColorFromData(snapshot.data?.ecoscoreGrade),
+//                                         fontSize: 18,
+//                                         fontWeight: FontWeight.bold
+//                                     ),
+//                                   ),
+//                                   const Text("Environmental impact for this product is: " ,
+//                                       softWrap: true
+//                                   ),
+//                                   Text("Score: ${snapshot.data!.ecoscoreScore ?? 'No data' }/100", style: const TextStyle(fontWeight: FontWeight.bold),),
+//                                 ],
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                       ),
+//                       const SizedBox(
+//                         height: 15,
+//                       ),
+//                       Card(
+//                         color: Colors.white,
+//                         child: Padding(
+//                           padding: const EdgeInsets.all(8.0),
+//                           child: Row(
+//                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                             children: [
+//                               Expanded(
+//                                 flex: 1,
+//                                 child: CircleAvatar(
+//                                   child: Icon(Icons.local_grocery_store, color: Theme.of(context).primaryColor,),
+//                                 ),
+//                               ),
+//                               Expanded(
+//                                 flex: 3,
+//                                 child: Column(
+//                                   mainAxisAlignment: MainAxisAlignment.start,
+//                                   crossAxisAlignment: CrossAxisAlignment.start,
+//                                   // mainAxisSize: MainAxisSize.min,
+//                                   children: [
+//                                     Text("Ingredients",
+//                                       style: TextStyle(
+//                                           color: Theme.of(context).primaryColor,
+//                                           fontSize: 18,
+//                                           fontWeight: FontWeight.bold
+//                                       ),
+//                                     ),
+//                                     Text("${snapshot.data!.ingredients ?? 'No data' }" ,
+//                                       softWrap: true,
+//                                       maxLines: 10,
+//                                       overflow: TextOverflow.ellipsis,
+//                                     ),
+//                                   ],
+//                                 ),
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                       ),
+// // =======
+// // >>>>>>> master
                       const SizedBox(
                         height: 15,
                       ),
