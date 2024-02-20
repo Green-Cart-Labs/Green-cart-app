@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:green_cart/api_service.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -20,9 +19,9 @@ class _LoginState extends State<Login> {
 
   Future<dynamic> signInWithGoogle() async {
     try {
+      print(0);
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       print("Google User: ${googleUser}");
-
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;
 
@@ -30,11 +29,7 @@ class _LoginState extends State<Login> {
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-      var info = await FirebaseAuth.instance.signInWithCredential(credential);
-      // print(info.user.);
-      var res = await ApiService().addUser(info.user?.uid,
-          info.user?.displayName, info.user?.email, info.user?.photoURL);
-      return await info;
+      return await FirebaseAuth.instance.signInWithCredential(credential);
     } on Exception catch (e) {
       debugPrint(e.toString());
       return null;

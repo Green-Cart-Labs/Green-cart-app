@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:ffi';
 
 import 'package:green_cart/models/barcodeDetails.dart';
 import 'package:http/http.dart' as http;
@@ -46,8 +45,7 @@ class ApiService {
       if (response.statusCode == 201) {
         // if (barcode != null){
         // String _barcode = barcodeDetailsToJson(response.body as BarcodeDetails);
-        return BarcodeDetails.fromJson(
-            jsonDecode(response.body) as Map<String, dynamic>);
+        return BarcodeDetails.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
         // } else {
         //   log('Invalid barcode: $barcode');
         // }
@@ -62,32 +60,5 @@ class ApiService {
     }
     // return null;
     throw Exception('Failed to create album.');
-  }
-
-  Future<int> addUser(
-      String? id, String? name, String? email, String? imageUrl) async {
-    try {
-      var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.userEndpoint);
-      var response = await http.post(url,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: jsonEncode({
-            'id': id,
-            'name': name,
-            'email': email,
-            'image_url': imageUrl,
-          }));
-      if (response.statusCode == 200) {
-        log('User added: ${response.statusCode}');
-        return 200;
-      } else {
-        log('Failed to add user: ${response.statusCode}');
-        return 400;
-      }
-    } catch (e) {
-      log('Error: $e');
-      return 400;
-    }
   }
 }
